@@ -1,0 +1,35 @@
+﻿@{  
+    Layout = "~/_SiteLayout.cshtml";
+    Page.Title = "Welcome to the VMS!";
+}
+<p> 
+        <H3>
+            New 'round these parts?
+        </H3>
+        <p>
+            This page is the VSC's online volunteer registration system. In order to register for events <p>
+            you must sign in. If you are a current CSUF student simply sign in using your protal information. <p> 
+            If you are not a current student click <a href="@Href("~/Account/Register")">here</a> to sign up for a new account. Try exploring the <p>
+            tabs at the top of the page to find what you're looking for, you do not need to sign up to <p>
+            view available projects and events.<p>
+        </p>
+        <br></br>
+        <H3>
+            Can't find what you're looking for?
+        </H3>
+        <p>
+            Try contacting the VSC <a href="http://www.fullerton.edu/deanofstudents/volunteer/index.html">here</a>.
+        </p>
+        <br></br>
+        <H3>
+            Temporary use links(these will be removed in the deployment version of the vms):
+        </H3>
+    <p>
+        <a href="@Href("~/Default_Admin.cshtml")">Administrator Home Page</a>.
+        <a href="@Href("~/Default_Director.cshtml")">Director Home Page</a>.
+        <a href="@Href("~/Default_Volunteer.cshtml")">Volunteer Home Page</a>.
+    </p>
+</p>
+                
+                
+            

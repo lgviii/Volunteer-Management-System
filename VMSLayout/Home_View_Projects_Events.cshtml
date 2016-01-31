@@ -1,0 +1,69 @@
+﻿@{
+    Layout = "~/_SiteLayout.cshtml";
+    Page.Title = "Current Projects and Events";
+}
+<p>
+    <h3>
+        Click the below titles to expand information about the projects...
+    </h3>
+    <p>
+    ...Projects and event lists will go here...
+    </p>
+</p>
+
+
+
+@{
+    var db = Database.Open("VMSDB");
+    var projectList = db.Query("SELECT * FROM PROJECTS ORDER BY PROJECTNAME");
+    
+    /*var db = Database.Open("VMSDB");
+    var projectList = db.Query("SELECT sobjects.name FROM sysobjects sobjects WHERE sobjects.xtype = 'U'"); */
+    var grid = new WebGrid(projectList);
+}
+
+<!--grid.GetHtml()-->
+
+
+<div id="news-items">
+    @foreach(var project in projectList)
+    {
+        if (@project.PROJECTCLOSED == 0)
+        {
+            <h3 class="news-header">
+                <br/>
+                @project.PROJECTNAME
+            </h3>
+            <div class="news-body">
+                <img class="newsimage" src="@project.PROJECTPICTUREURL" alt="This image link is broken... =("/>
+                <div>
+                    @project.PROJECTDESCRIPTION
+                </div>
+                @if (project.CONTINUOUSEVENT == 1)
+                {
+                    
+                    <a href="JavaScript:newPopup('SemesterLongEventPopUp.html');">
+                        <img src="@Href("~/continuous.jpg")" alt="This image link is broken... =(" />  
+                    </a>
+                }
+                <br clear="all"/>
+            </div>
+        }
+    }
+</div>
+
+
+<script type="text/javascript">
+  $(document).ready(function() 
+  {
+    $('#news-items .news-header').click(function() 
+    {
+      $(this).next().toggle('fast');
+      return false;
+    }).next().hide();
+  });
+function newPopup(url) {
+                        popupWindow = window.open(
+                            url,'popUpWindow','height=700,width=800,left=10,top=10,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no,status=yes')
+                    }
+</script>

@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>My ASP.NET Web Page - @Page.Title</title>
+        <link href="@Href("~/Styles/Site.css")" rel="stylesheet" />
+        <link href="@Href("~/favicon.ico")" rel="shortcut icon" type="image/x-icon" />
+    </head>
+    <body>
+        <div id="page">
+            <div id="header">
+                <p class="site-title">Volunteer Management System (VMS)</p>
+                <div id="login">
+                    @if (WebSecurity.IsAuthenticated) {
+                        <p>
+                            Welcome <a href="@Href("~/Account/ChangePassword")" title="Change password">@WebSecurity.CurrentUserName</a>!
+                            <a href="@Href("~/Account/Logout")">Logout</a>
+                        </p>
+                    } else {
+                        <ul>
+                            <li><a href="@Href("~/Account/Register")">Register</a></li>
+                            <li><a href="@Href("~/Account/Login")">Login</a></li>
+                        </ul>
+                    }
+                </div>
+                <ul id="menu">
+                    <li><a href="@Href("~/Default_Volunteer")">Home</a></li>
+                    <li><a href="@Href("~/Volunteer_View_Projects_Events")">View Volunteer Projects and Events</a></li>
+                    <li><a href="@Href("~/Volunteer_Signup")">Signup for Volunteer Events</a></li>
+                    <li><a href="@Href("~/Volunteer_View_Signups")">View Your Event Signups</a></li>
+                    <li><a href="@Href("~/Volunteer_Cancel_Signup")">Cancel an Event Signup</a></li>
+                    <li><a href="@Href("~/Volunteer_Transcript")">View Your Volunteer Transcript</a></li>
+                    <li><a href="@Href("~/Volunteer_Info")">View Your Personal Information</a></li>
+                    <li><a href="@Href("~/Volunteer_Help")">Help</a></li>
+                    <li><a href="@Href("~/Volunteer_About")">About the VMS</a></li>
+                </ul>
+            </div>
+            <div id="main">
+                <div id="content">
+                    <h1>@Page.Title</h1>
+                    @RenderBody()
+                </div>
+                <div id="footer">
+                    &copy; @DateTime.Now.Year - Lin Greene - CSUF Volunteer and Service Center
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
